@@ -7,6 +7,56 @@
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
 
+
+	<script>
+
+		$('#order-box1').focus();
+		$('#order-box3').focus();
+		$('#order-box4').focus();
+
+
+		let name = $('#order-box1').val();
+		let address = $('#order-box2').val();
+		let phone = $('#order-box4').val();
+
+		$('#names-q1').html('');
+
+		function q1(){
+			$.ajax({
+				type: "GET",
+				url: "http://spartacodingclub.shop/order",
+				data: {},
+				success: function(response){
+					let rows = response["orders"]["row"];
+					let temp_html = '';
+
+					for(let i = 0; i< rows.length; i++){
+						let name = rows[i]['name'];
+						let cnt = rows[i]['count'];
+						let address = rows[i]['address'];
+						let phone = rows[i]['phone'];
+
+						temp_html = '<tr>\
+									<td>'+name+'</td>\
+									<td>'+cnt+'</td>\
+									<td>'+address+'</td>\
+									<td>'+phone+'</td>\
+									</tr>'
+
+						$('#names-q1').append(temp_html);
+
+					}
+
+				}
+			})
+		}
+
+
+
+
+	</script>
+
+
 </head>
 
 <body>
@@ -18,28 +68,24 @@
 
 	<div class="product">
 		<div class="product-title">
-			<h1>상품 제목</h1>
+			<h1>바나나를 팝니다</h1>
 		</div>
 		<div class="price">
 			<h3 class="price-font"> 가격: 1,000,000원 / 개 </h3>
 		</div>
-	</div>
 		<p class="description"> 이 상품으로 말할 것 같으면 용왕이 찾지 못한 토끼의 간을 찾아 빨간망토의 늑대와 아기 돼지<br>
-		    삼형제의 숨결이 고루 녹아 있는 먹으면 120세까지 살 수 있다는 이 상품으로 말할 것 같으면<br>
-		용왕이 찾지 못한 토끼의 간을 찾아 빨간망토의 늑대와 아기 돼지.. </p>
+		    삼형제의 숨결이 고루 녹아 있는 먹으면 120세까지 살 수 있다는... </p>
 	</div>
 
 	<h1 class="order">
 		주문하기
 	</h1>
 
-		<div class="order-box">
-		<h4 class="order-info"> 주문자 성함: </h4>
-			<div class="container1">
-		
-			</div>
+		<div class="order-box1">
+		<h4 class="order-info"> 주문자 이름: </h4>
+			<input type="text" class="container1"></input>
 		</div>
-		<div class="order-box">
+		<div class="order-box2">
 		<h4 class="order-info"> 수량: </h4>
 			<select class="browser-default">
  			<option selected></option>
@@ -48,19 +94,35 @@
             <option value="3">3</option>
             </select>
 		</div>
-		<div class="order-box">
+		<div class="order-box3">
 		<h4 class="order-info"> 주소: </h4>
-			<div class="container2">
-		
-			</div>
+			<input type="text" class="container2"></input>
 		</div>
-		<div class="order-box">	
+		<div class="order-box4">	
 			<h4 class="order-info"> 전화번호: </h4>
-			<div class="container3">
-			</div>
+			<input type="text" class="container3"></input>
+		</div>
+		<div class="order-box5">
+			<button onClick="q1()", type="button" class="btn">주문하기</button>
+			<table class="info">
+			<thead>
+				<tr>
+					<td>이름</td>
+					<td>수량</td>
+					<td>주소</td>
+					<td>전화번호</td>
+				</tr>
+			</thead>
+			<tbody id="names-q1">
+			</tbody>
+		</div>
+		</table>
 		</div>
 
+		
 
-	<button type="button" class="btn">주문하기</button>
+
+
+
 
 </body>

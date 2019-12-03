@@ -60,7 +60,17 @@
               url: new_url,
               data: {},
               success: function(response){
-                console.log(response['articles'][0]['title'])
+                  
+                let articles = response['articles'];
+
+                for(let i = 0; i<articles.length; i++){
+                  let url = articles[i]['url'];
+                  let title = articles[i]['title'];
+                  let imgurl = articles[i]['urlToImage'];
+                }
+
+
+
               }
             })
     

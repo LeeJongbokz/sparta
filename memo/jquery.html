@@ -19,37 +19,45 @@
 
     <script>
       function q1(){
-        
-        var value = $('#input-q1').val();
+        let value = $('#input-q1').val();
 
         if(value == ''){
-          alert("다시 입력하세요")
+          alert("입력하세요!");
         }else{
-          alert(value)
+          alert(value);
         }
 
       }
 
       function q5(){
-      	var value = $('#input-q5').val();
 
-        if(value.indexOf('@') < 0){
-          alert("이메일이 아닙니다");
-        }
+       let txt = $('#input-q5').val();
 
-        var domain = value.split('@')[1];
-        alert(domain)
+       if(txt.indexOf('@') < 0){
+          $('#warning-q5').show();
+          $('#domain-q5').hide();
+       }else{
+          let domain = txt.split('@')[1].split('.')[0];
 
+          $('#domain-q5').text(domain);
+          $('#warning-q5').hide();
+          $('#domain-q5').show();
+
+       }
+
+
+
+      	// 여기에 코드를 입력하세요
       }
 
       function q7() {
-      	let name = $('#input-q7').val();
-        let html_name = '<li>' + name + '</li>';
-        $('#names-q7').append(html_name);
+        let name = $('#input-q7').val();
+        let temp_html = '<li>' + name + '</li>';
+        $('#names-q7').append(temp_html);
       }
 
       function q7_remove() {
-      	// 여기에 코드를 입력하세요
+        $('#names-q7').html('');
       }
 
     </script>
